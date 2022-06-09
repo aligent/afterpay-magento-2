@@ -49,6 +49,10 @@ class Category implements \Magento\Framework\Data\OptionSourceInterface
         $categories = $this->categoryHelper->getStoreCategories(false, true);
         $this->storeManager->setCurrentStore($currentStoreId);
 
+        if (empty($categories->getItems())) {
+            return [];
+        }
+
         return $this->convertToTree($categories);
     }
 
